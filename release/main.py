@@ -8,13 +8,13 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        uic.loadUi('release/UI/main.ui', self)
         self.pushButton.clicked.connect(self.loadTable)
         self.pushButton_2.clicked.connect(self.add)
         self.tableWidget.setColumnCount(7)
         self.tableWidget.setHorizontalHeaderLabels(
             ['ID', 'название сорта', 'степень обжарки', 'молотый/в зернах', 'описание вкуса', 'цена', 'объем упаковки'])
-        self.con = sqlite3.connect('data/coffee.sqlite')
+        self.con = sqlite3.connect('release/data/coffee.sqlite')
 
     def loadTable(self):
         cur = self.con.cursor()
@@ -34,10 +34,10 @@ class MyWidget(QMainWindow):
 class AddForm(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        uic.loadUi('release/UI/addEditCoffeeForm.ui', self)
         self.pushButton.clicked.connect(self.add)
         self.pushButton_2.clicked.connect(self.cancel)
-        self.con = sqlite3.connect('data/coffee.sqlite')
+        self.con = sqlite3.connect('release/data/coffee.sqlite')
         self.pushButton_3.clicked.connect(self.update_result)
         self.tableWidget.itemChanged.connect(self.item_changed)
         self.pushButton_4.clicked.connect(self.save_results)
